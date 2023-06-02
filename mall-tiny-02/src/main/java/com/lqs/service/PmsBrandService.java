@@ -11,18 +11,19 @@ import java.util.List;
  * </p>
  *
  * @author 刘千山
- * @since 2023-05-31
+ * @since 2023-06-02
  */
 public interface PmsBrandService extends IService<PmsBrand> {
+
     List<PmsBrand> listAllBrand();
 
-    int createBrand(PmsBrand brand);
+    int createBrand(PmsBrand pmsBrand);
 
-    int updateBrand(PmsBrand brand);
+    int updateBrand(PmsBrand pmsBrandDto);
 
     int deleteBrand(Long id);
 
-    List<PmsBrand> listBrand(int pageNum, int pageSize);
+    List<PmsBrand> listBrand(Integer pageNum, Integer pageSize);
 
     PmsBrand getBrand(Long id);
 }

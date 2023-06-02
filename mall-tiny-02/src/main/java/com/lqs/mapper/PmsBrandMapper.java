@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author 刘千山
- * @since 2023-05-31
+ * @since 2023-06-02
  */
 public interface PmsBrandMapper extends BaseMapper<PmsBrand> {
 

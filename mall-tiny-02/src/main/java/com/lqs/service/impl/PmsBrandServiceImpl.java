@@ -46,8 +46,8 @@ public class PmsBrandServiceImpl extends ServiceImpl<PmsBrandMapper, PmsBrand> i
     }
 
     @Override
-    public List<PmsBrand> listBrand(int pageNum, int pageSize) {
-        Page<PmsBrand> page = new Page<PmsBrand>(pageNum,pageSize);
+    public List<PmsBrand> listBrand(Integer pageNum, Integer pageSize) {
+        Page<PmsBrand> page = new Page<PmsBrand>(pageNum, pageSize);
         page(page);
         return page.getRecords();
     }
@@ -57,3 +57,4 @@ public class PmsBrandServiceImpl extends ServiceImpl<PmsBrandMapper, PmsBrand> i
         return brandMapper.selectById(id);
     }
 }
+

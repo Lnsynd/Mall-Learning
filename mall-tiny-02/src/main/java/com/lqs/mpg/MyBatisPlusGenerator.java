@@ -48,8 +48,9 @@ public class MyBatisPlusGenerator {
         gc.setOutputDir(projectPath + "/src/main/java");
         gc.setAuthor("刘千山");
         gc.setOpen(false);
-        gc.setFileOverride(true);
-        // gc.setSwagger2(true); 实体属性 Swagger2 注解
+        gc.setFileOverride(false);
+//        实体属性 Swagger2 注解
+        gc.setSwagger2(true);
         gc.setEntityName("%s");
         gc.setControllerName("%sController");
         gc.setMapperName("%sMapper");

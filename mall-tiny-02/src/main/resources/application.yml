@@ -6,6 +6,11 @@ spring:
     url: jdbc:mysql://localhost:3306/mall-learning?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     username: root
     password: root
+  mvc:
+    pathmatch:
+      # 解决 swagger2 与 springboot 版本冲突
+      matching-strategy: ANT_PATH_MATCHER
+
 mybatis-plus:
   mapper-locations:
     - classpath*:mapper/*.xml
