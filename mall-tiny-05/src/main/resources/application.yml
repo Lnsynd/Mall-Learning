@@ -1,0 +1,18 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mall-learning?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+# jwt 自定义key
+jwt:
+  tokenHeader: Authorization #jwt存储的请求头
+  secret: mySecret            #jwt 加解密使用的密钥
+  expiration: 604800          #jwt的过期时间
+  tokenHead: Bearer           #jwt负载中拿到开头
