@@ -6,10 +6,7 @@ import com.lqs.mall.service.UmsAdminService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,6 +35,12 @@ public class UmsAdminController {
             return CommonResult.success(map);
         }
         return CommonResult.validateFailed("用户名或密码错误");
+    }
+
+
+    @PostMapping("/test")
+    public CommonResult<String> test(){
+        return CommonResult.failed("登录测试失败");
     }
 
 }

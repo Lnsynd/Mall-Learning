@@ -1,5 +1,6 @@
 package com.lqs.mall.service.impl;
 
+import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lqs.mall.common.utils.JwtTokenUtil;
 import com.lqs.mall.domain.dto.AdminUserDetails;
@@ -13,6 +14,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 /**
@@ -36,18 +38,14 @@ public class UmsAdminServiceImpl extends ServiceImpl<UmsAdminMapper, UmsAdmin> i
     @Override
     public String login(String username, String password) {
         // authenticate用户认证
-        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(username,password);
+        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(username, password);
+
         Authentication authenticate = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
 
         // 如果认证未通过
-//        try {
-//            if (ObjectUtil.isNull(authenticate)) {
-//                System.out.println("验证不通过");
-//                throw new UsernameNotFoundException("登录失败");
-//            }
-//        } catch (Exception e) {
-//            throw new UsernameNotFoundException("不通过");
-//        }
+        if (ObjectUtil.isNull(authenticate)) {
+            throw new UsernameNotFoundException("登录失败");
+        }
 
 
         // 如果认证通过
