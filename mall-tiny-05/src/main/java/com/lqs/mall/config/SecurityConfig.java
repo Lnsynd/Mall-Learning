@@ -51,7 +51,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.authorizeRequests()
-                .antMatchers("/admin/login").anonymous()
+                .antMatchers("/admin/login","/admin/logout").anonymous()
                 // 设置Swagger3匿名访问
                 .antMatchers("/swagger-ui.html",
                         "/swagger-ui/*",

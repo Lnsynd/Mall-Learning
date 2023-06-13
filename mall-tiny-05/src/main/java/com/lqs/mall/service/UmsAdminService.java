@@ -1,6 +1,7 @@
 package com.lqs.mall.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.lqs.mall.common.api.CommonResult;
 import com.lqs.mall.domain.pojo.UmsAdmin;
 
 /**
@@ -11,4 +12,8 @@ import com.lqs.mall.domain.pojo.UmsAdmin;
 public interface UmsAdminService extends IService<UmsAdmin> {
 
     String login(String username,String password);
+
+    CommonResult<Object> logout();
+
+    int register(UmsAdmin umsAdmin);
 }

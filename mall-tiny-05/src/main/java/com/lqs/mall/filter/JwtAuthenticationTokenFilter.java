@@ -42,12 +42,14 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 //        获取请求Header和token
+
         String Header = request.getHeader(tokenHeader);
+        LOGGER.info("tokenHead:{}",Header);
         if(Header == null){
             filterChain.doFilter(request, response);
             return;
         }
-        String token = Header.substring(tokenHeader.length());
+        String token = Header.substring(tokenHead.length());
         LOGGER.info("token:{}",token);
 //        如果存在token,解析token
         if (Header != null && Header.startsWith(tokenHead)) {
