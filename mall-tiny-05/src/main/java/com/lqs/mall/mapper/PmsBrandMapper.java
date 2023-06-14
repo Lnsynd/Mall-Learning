@@ -1,7 +1,7 @@
 package com.lqs.mall.mapper;
 
-import com.lqs.mall.domain.PmsBrand;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.lqs.mall.domain.pojo.PmsBrand;
 
 /**
 * @author Admin

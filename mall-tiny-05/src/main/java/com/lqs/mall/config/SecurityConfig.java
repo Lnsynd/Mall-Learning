@@ -2,17 +2,22 @@ package com.lqs.mall.config;
 
 import cn.hutool.json.JSONUtil;
 import com.lqs.mall.common.api.CommonResult;
+import com.lqs.mall.domain.dto.AdminUserDetails;
+import com.lqs.mall.domain.pojo.UmsAdmin;
+import com.lqs.mall.domain.pojo.UmsPermission;
 import com.lqs.mall.filter.JwtAuthenticationTokenFilter;
+import com.lqs.mall.service.UmsAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.AccessDeniedException;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -21,16 +26,18 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by 刘千山 on 2023/6/8/008-11:06
  */
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled=true)
 public class SecurityConfig {
 
     @Autowired
-    private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
+    private UmsAdminService adminService;
 
     //    密码加密
     @Bean
@@ -42,10 +49,10 @@ public class SecurityConfig {
     /**
      * 获取AuthenticationManager（认证管理器），登录时认证使用
      */
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
-    }
+//    @Bean
+//    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+//        return authenticationConfiguration.getAuthenticationManager();
+//    }
 
 
     @Bean
@@ -61,15 +68,34 @@ public class SecurityConfig {
                         "/webjars/**").anonymous()
                 .anyRequest().authenticated()
                 .and()
+                .userDetailsService(userDetailsService())
                 .csrf().disable()        // 前后端分离 关闭
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // 不使用session
                 .and()
-                .addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(jwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling()
                 .accessDeniedHandler(this::accessDeniedHandler)
                 .authenticationEntryPoint(this::authenticationEntryPoint)
                 .and()
                 .build();
+    }
+
+    @Bean
+    public UserDetailsService userDetailsService() {
+        //获取登录用户信息
+        return username -> {
+            UmsAdmin admin = adminService.getAdminByUsername(username);
+            if (admin != null) {
+                List<UmsPermission> permissionList = adminService.getPermissionList(admin.getId());
+                return new AdminUserDetails(admin,permissionList);
+            }
+            throw new UsernameNotFoundException("用户名或密码错误");
+        };
+    }
+
+    @Bean
+    public JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter(){
+        return new JwtAuthenticationTokenFilter();
     }
 
 

@@ -9,6 +9,8 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+  main:
+    allow-circular-references: true
 
 # jwt 自定义key
 jwt:

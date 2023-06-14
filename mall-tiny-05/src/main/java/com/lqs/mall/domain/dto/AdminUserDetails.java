@@ -6,10 +6,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by 刘千山 on 2023/6/9/009-17:34
@@ -24,7 +26,9 @@ public class AdminUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return permissionList.stream()
+                .filter(umsPermission -> umsPermission.getValue()!=null)
+                .map(permission->new SimpleGrantedAuthority(permission.getValue())).collect(Collectors.toList());
     }
 
     @Override

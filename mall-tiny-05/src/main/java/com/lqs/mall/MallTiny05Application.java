@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import springfox.documentation.oas.annotations.EnableOpenApi;
 
 @EnableOpenApi
-@MapperScan("com.lqs.mall.mapper")
+@MapperScan({"com.lqs.mall.mapper","com.lqs.mall.dao"})
 @SpringBootApplication
 public class MallTiny05Application {
 

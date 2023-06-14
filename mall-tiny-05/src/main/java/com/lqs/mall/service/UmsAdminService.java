@@ -3,6 +3,9 @@ package com.lqs.mall.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.lqs.mall.common.api.CommonResult;
 import com.lqs.mall.domain.pojo.UmsAdmin;
+import com.lqs.mall.domain.pojo.UmsPermission;
+
+import java.util.List;
 
 /**
 * @author Admin
@@ -16,4 +19,8 @@ public interface UmsAdminService extends IService<UmsAdmin> {
     CommonResult<Object> logout();
 
     int register(UmsAdmin umsAdmin);
+
+    List<UmsPermission> getPermissionList(Long adminId);
+
+    UmsAdmin getAdminByUsername(String username);
 }

@@ -1,7 +1,7 @@
 package com.lqs.mall.service;
 
-import com.lqs.mall.domain.PmsBrand;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.lqs.mall.domain.pojo.PmsBrand;
 
 import java.util.List;
 

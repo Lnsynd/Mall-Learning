@@ -1,7 +1,7 @@
 package com.lqs.mall.controller;
 
 import com.lqs.mall.common.api.CommonResult;
-import com.lqs.mall.domain.PmsBrand;
+import com.lqs.mall.domain.pojo.PmsBrand;
 import com.lqs.mall.service.PmsBrandService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
