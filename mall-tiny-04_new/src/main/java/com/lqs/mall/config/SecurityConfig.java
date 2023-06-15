@@ -5,7 +5,7 @@ import com.lqs.mall.common.api.CommonResult;
 import com.lqs.mall.domain.dto.AdminUserDetails;
 import com.lqs.mall.domain.pojo.UmsAdmin;
 import com.lqs.mall.domain.pojo.UmsPermission;
-import com.lqs.mall.component.JwtAuthenticationTokenFilter;
+import com.lqs.mall.filter.JwtAuthenticationTokenFilter;
 import com.lqs.mall.service.UmsAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
