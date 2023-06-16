@@ -1,18 +1,30 @@
 package com.lqs.mall.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.lqs.mall.domain.pojo.UmsAdmin;
+import com.lqs.mall.domain.pojo.UmsAdminExample;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
-/**
-* @author Admin
-* @description 针对表【ums_admin(后台用户表)】的数据库操作Mapper
-* @createDate 2023-06-07 20:30:43
-* @Entity com.lqs.mall.domain.pojo.UmsAdmin
-*/
-public interface UmsAdminMapper extends BaseMapper<UmsAdmin> {
+public interface UmsAdminMapper {
+    int countByExample(UmsAdminExample example);
 
+    int deleteByExample(UmsAdminExample example);
+
+    int deleteByPrimaryKey(Long id);
+
+    int insert(UmsAdmin record);
+
+    int insertSelective(UmsAdmin record);
+
+    List<UmsAdmin> selectByExample(UmsAdminExample example);
+
+    UmsAdmin selectByPrimaryKey(Long id);
+
+    int updateByExampleSelective(@Param("record") UmsAdmin record, @Param("example") UmsAdminExample example);
+
+    int updateByExample(@Param("record") UmsAdmin record, @Param("example") UmsAdminExample example);
+
+    int updateByPrimaryKeySelective(UmsAdmin record);
+
+    int updateByPrimaryKey(UmsAdmin record);
 }
-
-
-
-

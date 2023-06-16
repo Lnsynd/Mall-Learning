@@ -1,18 +1,36 @@
 package com.lqs.mall.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.lqs.mall.domain.pojo.PmsBrand;
+import com.lqs.mall.domain.pojo.PmsBrandExample;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
-/**
-* @author Admin
-* @description 针对表【pms_brand(品牌表)】的数据库操作Mapper
-* @createDate 2023-06-12 20:09:45
-* @Entity com.lqs.mall.domain.PmsBrand
-*/
-public interface PmsBrandMapper extends BaseMapper<PmsBrand> {
+public interface PmsBrandMapper {
+    int countByExample(PmsBrandExample example);
 
+    int deleteByExample(PmsBrandExample example);
+
+    int deleteByPrimaryKey(Long id);
+
+    int insert(PmsBrand record);
+
+    int insertSelective(PmsBrand record);
+
+    List<PmsBrand> selectByExampleWithBLOBs(PmsBrandExample example);
+
+    List<PmsBrand> selectByExample(PmsBrandExample example);
+
+    PmsBrand selectByPrimaryKey(Long id);
+
+    int updateByExampleSelective(@Param("record") PmsBrand record, @Param("example") PmsBrandExample example);
+
+    int updateByExampleWithBLOBs(@Param("record") PmsBrand record, @Param("example") PmsBrandExample example);
+
+    int updateByExample(@Param("record") PmsBrand record, @Param("example") PmsBrandExample example);
+
+    int updateByPrimaryKeySelective(PmsBrand record);
+
+    int updateByPrimaryKeyWithBLOBs(PmsBrand record);
+
+    int updateByPrimaryKey(PmsBrand record);
 }
-
-
-
-
