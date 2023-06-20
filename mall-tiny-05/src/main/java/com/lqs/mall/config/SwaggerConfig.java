@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.oas.annotations.EnableOpenApi;
 import springfox.documentation.service.*;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.service.contexts.SecurityContext;
@@ -17,7 +16,6 @@ import java.util.List;
 /**
  * Created by 刘千山 on 2023/6/8/008-11:15
  */
-@EnableOpenApi
 @Configuration
 public class SwaggerConfig {
     @Bean
