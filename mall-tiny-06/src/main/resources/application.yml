@@ -1,6 +1,8 @@
 server:
   port: 8080
 spring:
+  main:
+    allow-circular-references: true
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/mall-learning?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
@@ -9,14 +11,14 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ANT_PATH_MATCHER
-  main:
-    allow-circular-references: true
-
+  data:
+    elasticsearch:
+      repositories:
+        enabled: true
 mybatis:
   mapper-locations:
     - classpath:dao/*.xml
     - classpath*:mapper/*.xml
-
 # 自定义redis key
 redis:
   key:
@@ -24,9 +26,8 @@ redis:
       authCode: "portal:authCode:"
     expire:
       authCode: 120 # 验证码超期时间
-
 jwt:
   tokenHeader: Authorization   # 存储的请求头
   secret: mySecret             #  加解密使用的密钥
   expiration: 604800            # 过期时间
-  tokenHead: LQS                #负载中的开头
+  tokenHead: Bearer                 #负载中的开头
