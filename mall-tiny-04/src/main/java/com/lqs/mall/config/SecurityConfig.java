@@ -4,7 +4,7 @@ package com.lqs.mall.config;
 import cn.hutool.json.JSONUtil;
 import com.lqs.mall.common.api.CommonResult;
 import com.lqs.mall.component.JwtAuthenticationTokenFilter;
-import com.lqs.mall.dto.AdminUserDetails;
+import com.lqs.mall.domain.AdminUserDetails;
 import com.lqs.mall.mbg.model.UmsAdmin;
 import com.lqs.mall.mbg.model.UmsPermission;
 import com.lqs.mall.service.UmsAdminService;

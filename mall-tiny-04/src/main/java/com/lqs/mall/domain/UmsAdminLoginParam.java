@@ -1,4 +1,4 @@
-package com.lqs.mall.dto;
+package com.lqs.mall.domain;
 
 import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.validator.constraints.NotEmpty;

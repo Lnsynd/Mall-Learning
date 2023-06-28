@@ -1,4 +1,4 @@
-package com.lqs.mall.dto;
+package com.lqs.mall.domain;
 
 
 import com.lqs.mall.mbg.model.UmsAdmin;

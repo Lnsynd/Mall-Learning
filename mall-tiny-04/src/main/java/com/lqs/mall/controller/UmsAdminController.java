@@ -1,7 +1,7 @@
 package com.lqs.mall.controller;
 
 import com.lqs.mall.common.api.CommonResult;
-import com.lqs.mall.dto.UmsAdminLoginParam;
+import com.lqs.mall.domain.UmsAdminLoginParam;
 import com.lqs.mall.mbg.model.UmsAdmin;
 import com.lqs.mall.mbg.model.UmsPermission;
 import com.lqs.mall.service.UmsAdminService;
