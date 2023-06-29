@@ -39,8 +39,21 @@ spring:
     password: mall
     publisher-returns: true  #消息发送到队列确认
     publisher-confirm-type: simple #消息发送到交换器确认
+  servlet:
+    multipart:
+      enabled: true #开 启文件上传
+      max-file-size: 10MB # 限制文件上传大小为10M
 
 
+
+
+
+
+minio:
+  endpoint: http://localhost:9000 # MinIO服务所在地址
+  bucketName: mall # 存储桶名称
+  accessKey: minioadmin # 访问的key
+  secretKey: minioadmin # 访问的秘钥
 # 自定义jwt key
 jwt:
   tokenHeader: Authorization #JWT存储的请求头
@@ -58,7 +71,6 @@ redis:
       authCode: "portal:authCode:"
     expire:
       authCode: 120 # 验证码超期时间
-
 secure:
   ignored:
     urls: #安全路径白名单
@@ -76,3 +88,4 @@ secure:
       - /esProduct/**
       - /member/readHistory/**
       - /order/**
+      - /minio/**
